@@ -182,7 +182,7 @@ The AGV software stack is modular and provides multiple interfaces for control a
 ros2 run automama manual_control
 ```
 - This allows you to operate the AGV via keyboard inputs.
-- For detailed instructions on installation, key bindings, and script usage, refer to the **[Control Stack README](automama/control/README.md)**
+- For detailed instructions on installation, key bindings, and script usage, refer to the **[Control Stack README](automama/control/README.md)**.
 - Topic reference: Manual Control
 #### 2. Perception & Autonomous Navigation
 - Start the perception stack along with local map generation, path planning, and actuation commands:
@@ -202,8 +202,7 @@ Within the manual steering interface, press **`o`** to toggle between:
 
 - **Manual override** – user controls the AGV
 - **Autonomous mode** – AGV follows the planned path automatically
-
-#### For detailed instructions on stereo setup, calibration, and perception, refer to the **[Perception Stack README](automama/perception/README.md)**.
+- For detailed instructions on stereo setup, calibration, and perception, refer to the **[Perception Stack README](automama/perception/README.md)**.
 ---
 💡 **Important Notes**
 
