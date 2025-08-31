@@ -153,12 +153,12 @@ To handle this, we implemented a **GPU-based interpolation pipeline** using **Cu
 
 ```mermaid
 graph TD
-    A[Raw Costmap] --> B[GPU Interpolation (CuPy/C++ Kernel)]
+    A[Raw Costmap] --> B[GPU Interpolation CuPy C++ Kernel]
     B --> C[Boundary Classification]
     C --> D[Euclidean Distance Transform]
     D --> E[Low-Cost Path Convergence]
     E --> F[Apply Vehicle Constraints & Occupancy Grid]
-    F --> G[Gap Follow Trajectory Output → ROS2 Navigation & ESP32 Control]
+    F --> G[Gap Follow Trajectory Output to ROS2 & ESP32]
 
     style A fill:#d9f0ff,stroke:#333,stroke-width:1px
     style B fill:#ffe6cc,stroke:#333,stroke-width:1px
