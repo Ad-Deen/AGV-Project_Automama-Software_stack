@@ -104,7 +104,8 @@ graph TD
     E -->|Dynamic Objects| G[Stereo Vision Pipeline → Object Depth]
     F --> H[Occupancy Grid Mapping]
     G --> H
-    H --> I[Gap Follow Algorithm → Real-Time Path Planning]
+    H --> I[Gap Follow Algorithm]
+    I --> J[Real-Time Path Planning]
     style A fill:#d9f0ff,stroke:#333,stroke-width:1px
     style B fill:#ffe6cc,stroke:#333,stroke-width:1px
     style C fill:#e6ccff,stroke:#333,stroke-width:1px
@@ -113,4 +114,58 @@ graph TD
     style G fill:#ffcccc,stroke:#333,stroke-width:1px
     style H fill:#ffd9e6,stroke:#333,stroke-width:1px
     style I fill:#cce6ff,stroke:#333,stroke-width:1px
+    style J fill:#cce2ff,stroke:#333,stroke-width:1px
 ```
+---
+### 🛣️ Gap Follow Algorithm (AGV Path Planning)
+
+After generating the occupancy costmap from perception data, the road pixels often had discontinuities due to sensor noise or sparse depth data:
+
+- **Near-road pixels** were smooth and reliable  
+- **Distant-road pixels** exhibited discontinuous scan lines  
+
+To handle this, we implemented a **GPU-based interpolation pipeline** using **CuPy custom kernels in C++**, fully leveraging the Jetson Orin Nano GPU for real-time performance.
+
+#### Workflow:
+
+1. **Costmap Interpolation**  
+   - Fill gaps in distant road pixels  
+   - GPU kernels perform fast 2D interpolation
+
+2. **Boundary Classification**  
+   - Free space → `0`  
+   - Obstacles → `255`  
+   - Intermediate border → `245`  
+
+3. **Euclidean Distance Transform (EDT)**  
+   - Compute distances from borders using GPU-accelerated custom kernels
+
+4. **Low-Cost Path Convergence**  
+   - Pixels converge along the path of least cost  
+   - Vehicle constraints (turning radius, width) applied  
+   - Occupancy grid ensures collision-free navigation
+
+5. **Real-Time Control Output**  
+   - Gap-following trajectory sent to ROS2 navigation stack  
+   - ESP32 receives commands for steering, throttle, and braking
+
+#### Workflow Diagram
+
+```mermaid
+graph TD
+    A[Raw Costmap] --> B[GPU Interpolation (CuPy/C++ Kernel)]
+    B --> C[Boundary Classification]
+    C --> D[Euclidean Distance Transform]
+    D --> E[Low-Cost Path Convergence]
+    E --> F[Apply Vehicle Constraints & Occupancy Grid]
+    F --> G[Gap Follow Trajectory Output → ROS2 Navigation & ESP32 Control]
+
+    style A fill:#d9f0ff,stroke:#333,stroke-width:1px
+    style B fill:#ffe6cc,stroke:#333,stroke-width:1px
+    style C fill:#e6ccff,stroke:#333,stroke-width:1px
+    style D fill:#fff0b3,stroke:#333,stroke-width:1px
+    style E fill:#ccffcc,stroke:#333,stroke-width:1px
+    style F fill:#ffcccc,stroke:#333,stroke-width:1px
+    style G fill:#cce6ff,stroke:#333,stroke-width:1px
+```
+---
