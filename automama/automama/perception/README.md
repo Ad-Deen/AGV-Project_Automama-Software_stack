@@ -89,3 +89,41 @@ ros2 run automama navstack
 - VPI (Vision Programming Interface)
 - Open3D (optional for point cloud visualization)
 - TensorRT (for YOLOv8n inference)
+
+---
+
+```mermaid
+flowchart TD
+    A[Stereo Cameras] --> B[Frame Capture]
+    B --> C[YOLOv8n Segmentation]
+    C --> D[Mask Generation]
+    D --> E[Disparity Map Computation (CUDA/VPI)]
+    E --> F[Temporal Filtering & Depth Map]
+    F --> G[Occupancy Grid Generation]
+    G --> H[NavStack: Path Planning]
+    H --> I[Actuator Commands /actuator_cmds]
+    I --> J[ESP32 Control Interface]
+
+    subgraph Visualization
+        C
+        D
+        F
+        G
+    end
+```
+## Main Loop
+
+- Capture left and right frames.
+- Run YOLOv8n segmentation on the left frame.
+- Generate masks for road and dynamic objects.
+- Compute disparity map (custom CUDA kernel or VPI).
+- Filter depth map and generate occupancy grid.
+- Compute local steering and throttle using NavStack.
+- Publish `[throttle, steering, brake]` to `/actuator_cmds`.
+
+## Notes
+
+- All computation is GPU-accelerated using CuPy.
+- Temporal disparity filtering ensures smooth depth maps.
+- Voxel downsampling reduces point cloud size for visualization.
+- OpenCV and Open3D are used for visualizing masks, depth maps, occupancy grids, and 3D point clouds.
