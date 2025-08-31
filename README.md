@@ -169,3 +169,44 @@ graph TD
     style G fill:#cce6ff,stroke:#333,stroke-width:1px
 ```
 ---
+### 📦 How to Use the Package
+
+The AGV software stack is modular and provides multiple interfaces for control and perception. Follow these steps to get started:
+
+---
+
+#### 1. Manual Control
+- Start the manual control interface using ROS2:
+
+```bash
+ros2 run automama manual_control
+```
+- This allows you to operate the AGV via keyboard inputs.
+- For detailed instructions on installation, key bindings, and script usage, refer to the **[Control Stack README](automama/control/README.md)**
+- Topic reference: Manual Control
+#### 2. Perception & Autonomous Navigation
+- Start the perception stack along with local map generation, path planning, and actuation commands:
+
+```bash
+ros2 run automama navstack
+```
+The system performs:
+
+- Stereo camera rectification & calibration
+- Object segmentation and depth estimation
+- Occupancy grid mapping
+- Gap Follow path planning
+- Steering, throttle, and brake actuation via ESP32
+
+Within the manual steering interface, press **`o`** to toggle between:
+
+- **Manual override** – user controls the AGV
+- **Autonomous mode** – AGV follows the planned path automatically
+
+#### For detailed instructions on stereo setup, calibration, and perception, refer to the **[Perception Stack README](automama/perception/README.md)**.
+---
+💡 **Important Notes**
+
+- Ensure your NVIDIA Jetson device has GPU drivers installed.
+- Make sure all Python/C++ dependencies (CuPy, OpenCV, VisPy, ROS2 packages) are installed and correctly configured.
+- Test the manual control first to verify communication with the ESP32 before running autonomous navigation.
