@@ -94,15 +94,15 @@ ros2 run automama navstack
 
 ```mermaid
 flowchart TD
-    A[Stereo Cameras] --> B[Frame Capture]
-    B --> C[YOLOv8n Segmentation]
-    C --> D[Mask Generation]
-    D --> E[Disparity Map Computation (CUDA/VPI)]
-    E --> F[Temporal Filtering & Depth Map]
-    F --> G[Occupancy Grid Generation]
-    G --> H[NavStack: Path Planning]
-    H --> I[Actuator Commands /actuator_cmds]
-    I --> J[ESP32 Control Interface]
+    A["Stereo Cameras"] --> B["Frame Capture"]
+    B --> C["YOLOv8n Segmentation"]
+    C --> D["Mask Generation"]
+    D --> E["Disparity Map Computation (CUDA/VPI)"]
+    E --> F["Temporal Filtering & Depth Map"]
+    F --> G["Occupancy Grid Generation"]
+    G --> H["NavStack: Path Planning"]
+    H --> I["Actuator Commands /actuator_cmds"]
+    I --> J["ESP32 Control Interface"]
 
     subgraph Visualization
         C
