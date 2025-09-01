@@ -88,9 +88,15 @@ In this module, we designed a **GPU-accelerated stereo vision + semantic percept
    - **Dynamic Objects** → Apply custom stereo disparity + 3D reconstruction for object depth.  
 4. **Occupancy Grid Mapping** → Fuse road and object depth into a unified grid map.  
 5. **Path Planning** → Run **Gap Follow Algorithm** for real-time dynamic path planning.  
-
+<!--
 <p align="center">
   <img src="gifs/stereo_demo.gif" alt="AGV 1" width="640" height="480"/>
+</p>
+-->
+
+<p align="center">
+  <video src="gifs/stereo vision working demo.mp4" width="640" height="480" autoplay loop muted playsinline>
+  </video>
 </p>
 
 ---
