@@ -16,7 +16,7 @@ It integrates custom perception, stereo vision, and autonomous navigation pipeli
   - Braking  
 - **Manual Override** – Python-Arduino bridge for teleoperation and debugging.
 
-<p align="center">
+<p align="left">
   <img src="gifs/Autonomous_run.gif" alt="AGV 1" width="600" height="480"/>
   <img src="gifs/automama_run.gif" alt="AGV 2" width="150" height="480"/>
 </p>
