@@ -18,7 +18,7 @@ It integrates custom perception, stereo vision, and autonomous navigation pipeli
 
 <p align="left">
   <img src="gifs/Autonomous_run.gif" alt="AGV 1" width="550" height="480"/>
-  <img src="gifs/automama_run.gif" alt="AGV 2" width="150" height="480"/>
+  <img src="gifs/automama_run_trimmed.gif" alt="AGV 2" width="150" height="480"/>
 </p>
 
 ---
