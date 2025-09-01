@@ -17,8 +17,8 @@ It integrates custom perception, stereo vision, and autonomous navigation pipeli
 - **Manual Override** – Python-Arduino bridge for teleoperation and debugging.
 
 <p align="center">
-  <img src="gifs/Autonomous_run.gif" alt="AGV 1" width="350" height="250"/>
-  <img src="gifs/automama_run.gif" alt="Orca AUV 2" width="350" height="205"/>
+  <img src="gifs/Autonomous_run.gif" alt="AGV 1" width="640" height="480"/>
+  <img src="gifs/automama_run.gif" alt="AGV 2" width="170" height="480"/>
 </p>
 
 ---
