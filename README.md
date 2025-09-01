@@ -60,7 +60,9 @@ automama
 
 - **ROS2 (Foxy/Humble)** – Middleware for modular control and communication  
 - **Python + OpenCV** – Image processing & stereo disparity  
-- **VisPy (GPU)** – Real-time 3D point cloud visualization  
+- **VisPy (GPU)** – Real-time 3D point cloud visualization
+- **VPI (GPU)** – NVIDIA DMA(Direct Memory Access) based Image manipulation library like OpenCV but fully on GPU.
+- **CuPy (GPU)** – NVIDIA GPU accelerated version of numpy with in depth custom GPU kernel insertion features.    
 - **ESP32 + Arduino** – Low-level actuation (steering, brake, throttle)  
 - **RViz2** – Simulation & visualization  
 
